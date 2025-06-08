@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список карт</title>
+</head>
+<body>
+    <h1>Список карт</h1>
+    <form method="GET" action="/">
+        <input type="text" name="filter" value="{{.Filter}}" placeholder="Поиск по названию или цене">
+        <button type="submit">Поиск</button>
+    </form>
+    <ul>
+        {{range .Maps}}
+            <li>
+                <a href="/map/{{.ID}}">{{.Name}}</a> - {{.Price}} 
+                <a href="/delete/{{.ID}}">Удалить</a>
+            </li>
+        {{else}}
+            <li>Нет доступных карт.</li>
+        {{end}}
+    </ul>
+</body>
+</html>

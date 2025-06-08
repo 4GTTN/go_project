@@ -1,0 +1,271 @@
+definitions:
+  models.Game:
+    properties:
+      completed_at:
+        type: string
+      createdat:
+        type: string
+      creator_id:
+        type: integer
+      deleted_at:
+        type: string
+      formed_at:
+        type: string
+      id:
+        type: integer
+      maps:
+        items:
+          $ref: '#/definitions/models.Map'
+        type: array
+      moderator_id:
+        type: integer
+      status:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Map:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      is_deleted:
+        type: boolean
+      name:
+        type: string
+      price:
+        type: number
+      updated_at:
+        type: string
+    type: object
+  models.Player:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      id:
+        type: integer
+      role:
+        description: creator or moderator
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/games:
+    get:
+      parameters:
+      - description: Filter by status
+        in: query
+        name: status
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Game'
+            type: array
+      summary: Get list of games
+  /api/games/{game_id}/remove-map/{map_id}:
+    delete:
+      parameters:
+      - description: Game ID
+        in: path
+        name: game_id
+        required: true
+        type: integer
+      - description: Map ID
+        in: path
+        name: map_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Remove map from game
+  /api/games/{id}:
+    get:
+      parameters:
+      - description: Game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Game'
+      summary: Get a game
+  /api/games/add-map/{map_id}:
+    post:
+      parameters:
+      - description: Map ID
+        in: path
+        name: map_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Game'
+      summary: Add map to game
+  /api/games/complete/{id}:
+    put:
+      parameters:
+      - description: Game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Game'
+      summary: Complete a game
+  /api/games/form/{id}:
+    put:
+      parameters:
+      - description: Game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Game'
+      summary: Form a game
+  /api/games/reject/{id}:
+    put:
+      parameters:
+      - description: Game ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Game'
+      summary: Reject a game
+  /api/maps:
+    get:
+      parameters:
+      - description: Filter by name or price
+        in: query
+        name: filter
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Map'
+            type: array
+      summary: Get list of maps
+  /api/maps/{id}:
+    get:
+      parameters:
+      - description: Map ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Map'
+      summary: Get a map
+  /api/maps/create:
+    post:
+      parameters:
+      - description: Map data
+        in: body
+        name: map
+        required: true
+        schema:
+          $ref: '#/definitions/models.Map'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Map'
+      summary: Create a map
+  /api/players/login:
+    post:
+      parameters:
+      - description: Player credentials
+        in: body
+        name: player
+        required: true
+        schema:
+          $ref: '#/definitions/models.Player'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Player'
+      summary: Login player
+  /api/players/logout:
+    post:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Logout player
+  /api/players/register:
+    post:
+      parameters:
+      - description: Player data
+        in: body
+        name: player
+        required: true
+        schema:
+          $ref: '#/definitions/models.Player'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Player'
+      summary: Register a new player
+swagger: "2.0"
