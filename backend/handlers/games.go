@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"backend/app"
+	"backend/models"
 	"encoding/json"
-	"game-matchmaking/backend/app"
-	"game-matchmaking/backend/models"
 	"net/http"
 	"strconv"
 	"time"
