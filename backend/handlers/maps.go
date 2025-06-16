@@ -9,7 +9,6 @@ import (
 	"strconv"
 )
 
-// Templates
 var templates = template.Must(template.ParseGlob("templates/*.html"))
 
 func ListHandler(app *app.App) http.HandlerFunc {

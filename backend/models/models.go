@@ -23,9 +23,9 @@ type Player struct {
 	UpdatedAt time.Time  `json:"updated_at"`
 	DeletedAt *time.Time `gorm:"index" json:"deleted_at"`
 	Username  string     `gorm:"unique" json:"username"`
-	Email     string     `gorm:"unique" json:"email"` // Fixed field name and JSON tag
-	Role      string     `json:"role"`                // admin, moderator, creator
-	Token     string     `json:"token"`               // Session token
+	Email     string     `gorm:"unique" json:"email"`
+	Role      string     `json:"role"`
+	Token     string     `json:"token"`
 	Password  string     `json:"password"`
 }
 

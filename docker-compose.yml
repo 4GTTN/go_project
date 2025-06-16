@@ -2,9 +2,11 @@ version: '3.8'
 
 services:
   backend:
-    image: amm45/game-matchmaking-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     ports:
-      - "8080:8080"
+      - "443:443"
     environment:
       - DB_HOST=postgres
       - DB_USER=postgres
@@ -20,7 +22,9 @@ services:
       - app-network
 
   frontend:
-    image: amm45/game-matchmaking-frontend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
     ports:
       - "80:80"
     depends_on:
