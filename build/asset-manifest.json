@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/4GTTN/go_project.git/static/css/main.5a54b882.css",
+    "main.js": "/4GTTN/go_project.git/static/js/main.39a6c861.js",
+    "index.html": "/4GTTN/go_project.git/index.html",
+    "main.5a54b882.css.map": "/4GTTN/go_project.git/static/css/main.5a54b882.css.map",
+    "main.39a6c861.js.map": "/4GTTN/go_project.git/static/js/main.39a6c861.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a54b882.css",
+    "static/js/main.39a6c861.js"
+  ]
+}
